@@ -1,7 +1,6 @@
 package com.atividades.fran.mobile_atividade4;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
                 middleX = (relativeLayout.getWidth()*0.5f);
                 positionXImage = imageView.getX();
 
-                minX = imageView.getWidth();
-                maxX = relativeLayout.getWidth() - imageView.getWidth();
+                Log.v("frontier:: image", Float.toString(imageView.getWidth()));
+                Log.v("frontier:: position", Float.toString(positionXImage));
+                Log.v("frontier:: x", Float.toString(event.getX()));
+
+                minX = -180f;//metade da imagem
+                maxX = relativeLayout.getWidth() - (imageView.getWidth()/2);
 
                 x = event.getX();
 
@@ -46,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
                     positionXImage += 50f;
                 }
 
-                if(positionXImage < -150f){
+                if(positionXImage < minX){
                     //valida se a imagem está no limite definido
-                    positionXImage = -150f;
+                    positionXImage = minX;
                 }
-                if(positionXImage > 1300f){
+                if(positionXImage > maxX){
                     //valida se a imagem está no limite definido
-                    positionXImage = 1300f;
+                    positionXImage = maxX;
                 }
                 imageView.setX(positionXImage);
 
